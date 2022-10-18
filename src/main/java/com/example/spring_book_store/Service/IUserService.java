@@ -1,5 +1,6 @@
 package com.example.spring_book_store.Service;
 
+import com.example.spring_book_store.Dto.LoginDto;
 import com.example.spring_book_store.Dto.UserDTO;
 import com.example.spring_book_store.Entity.UserData;
 
@@ -17,4 +18,6 @@ public interface IUserService
 
     String editEmployee(UserDTO userDTO, int id);
     List<UserData> getUsersByFirstName(String firstName);
+
+    UserData loginUser(LoginDto loginDto);
 }

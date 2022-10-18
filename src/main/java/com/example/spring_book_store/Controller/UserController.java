@@ -1,5 +1,6 @@
 package com.example.spring_book_store.Controller;
 
+import com.example.spring_book_store.Dto.LoginDto;
 import com.example.spring_book_store.Dto.ResponseDTO;
 import com.example.spring_book_store.Dto.UserDTO;
 import com.example.spring_book_store.Entity.UserData;
@@ -11,9 +12,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-@Slf4j
+
+
 @RequestMapping("/bookstore")
 @RestController
+@Slf4j
 public class UserController
 {
     @Autowired
@@ -69,8 +72,16 @@ public class UserController
     @GetMapping("/getByUsername/{firstName}")
     public ResponseEntity<ResponseDTO> getUsersByFirstName(@PathVariable String firstName)
     {
-        ResponseDTO responseDTO = new ResponseDTO(firstName+" Employee All Data Successfully.......", iUserService.getUsersByFirstName(firstName));
-        log.info("Get Employee Id : "+firstName+"  Data Successfully.......");
+        ResponseDTO responseDTO = new ResponseDTO(firstName+" User All Data Successfully.......", iUserService.getUsersByFirstName(firstName));
+        log.info("Get User Id : "+firstName+"  Data Successfully.......");
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<ResponseDTO> userLogin(@RequestBody LoginDto userLoginDTO)
+    {
+        ResponseDTO responseDTO = new ResponseDTO(" User All Data Successfully.......", iUserService.loginUser(userLoginDTO));
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+    }
+
 }

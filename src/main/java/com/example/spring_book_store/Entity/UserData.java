@@ -1,15 +1,17 @@
 package com.example.spring_book_store.Entity;
 
 import com.example.spring_book_store.Dto.UserDTO;
+import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+
+@Data
 @Entity
-public class UserData {
+public class UserData
+{
+    @Column(name = "user_id")
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int id;
 
     public String firstName;
@@ -22,6 +24,7 @@ public class UserData {
     public UserData()
     {
     }
+
 
     public UserData(int id, UserDTO userDTO)
     {

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.validation.constraints.*;
 @Data
 @AllArgsConstructor
@@ -27,8 +28,5 @@ public class UserDTO
 
         @NotBlank(message = "Password Can Not Empty")
         public String Password;
-
-
-
 
 }

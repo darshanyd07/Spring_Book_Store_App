@@ -1,5 +1,7 @@
 package com.example.spring_book_store.Service;
 
+import com.example.spring_book_store.Dto.LoginDto;
+import com.example.spring_book_store.Dto.ResponseDTO;
 import com.example.spring_book_store.Dto.UserDTO;
 import com.example.spring_book_store.Entity.UserData;
 import com.example.spring_book_store.Exception.CustomException;
@@ -76,5 +78,24 @@ public class UserService implements IUserService
 
         } else return userRepository.getUsersByFirstName(firstName);
     }
+
+
+    @Override
+    public UserData loginUser(LoginDto loginDto)
+    {
+//        ResponseDTO dto = new ResponseDTO();
+        Optional<UserData> login = userRepository.findByEmailId(loginDto.getEmail());
+        if (loginDto.getEmail().equals(login.get().getEmail()) && loginDto.getPassword().equals(login.get().getPassword())) {
+            log.info("Login Succ......");
+            return login.get();
+        }
+        else
+        {
+            log.info(" Wrong Login Succ......");
+            throw new CustomException("No User matches with the given ID");
+        }
+
+    }
+
 }
 
